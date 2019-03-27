@@ -1,4 +1,5 @@
 class CodePortfolioItemsController < ApplicationController
+  before_action :authorize_access_request!
   before_action :set_code_portfolio_item, only: [:show, :update, :destroy]
 
   # GET /code_portfolio_items
@@ -15,7 +16,8 @@ class CodePortfolioItemsController < ApplicationController
 
   # POST /code_portfolio_items
   def create
-    @code_portfolio_item = CodePortfolioItem.new(code_portfolio_item_params)
+    # @code_portfolio_item = CodePortfolioItem.new(code_portfolio_item_params)
+    @code_portfolio_item = current_user.code_portfolio_items.build(code_portfolio_item_params)
 
     if @code_portfolio_item.save
       render json: @code_portfolio_item, status: :created, location: @code_portfolio_item
@@ -41,7 +43,8 @@ class CodePortfolioItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_code_portfolio_item
-      @code_portfolio_item = CodePortfolioItem.find(params[:id])
+      # @code_portfolio_item = CodePortfolioItem.find(params[:id])
+      @code_portfolio_item = current_user.code_portfolio_items.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

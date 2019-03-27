@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authorize_access_request!
   before_action :set_article, only: [:show, :update, :destroy]
 
   # GET /articles
@@ -15,7 +16,8 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @article = Article.new(article_params)
+    # @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
 
     if @article.save
       render json: @article, status: :created, location: @article
@@ -41,7 +43,8 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      # @article = Article.find(params[:id])
+      @article = current_user.articles.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
