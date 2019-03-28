@@ -17,8 +17,6 @@ class DesignPortfolioItemsController < ApplicationController
 
   # POST /design_portfolio_items
   def create
-    ROLES = %w[admin].freeze
-
     # @design_portfolio_item = DesignPortfolioItem.new(design_portfolio_item_params)
     @design_portfolio_item = current_user.design_portfolio_items.build(design_portfolio_item_params)
 
@@ -31,7 +29,6 @@ class DesignPortfolioItemsController < ApplicationController
 
   # PATCH/PUT /design_portfolio_items/1
   def update
-    ROLES = %w[admin].freeze
     if @design_portfolio_item.update(design_portfolio_item_params)
       render json: @design_portfolio_item
     else
@@ -41,7 +38,6 @@ class DesignPortfolioItemsController < ApplicationController
 
   # DELETE /design_portfolio_items/1
   def destroy
-    ROLES = %w[admin].freeze
     @design_portfolio_item.destroy
   end
 

@@ -16,7 +16,6 @@ class CodePortfolioItemsController < ApplicationController
 
   # POST /code_portfolio_items
   def create
-    ROLES = %w[admin].freeze
     # @code_portfolio_item = CodePortfolioItem.new(code_portfolio_item_params)
     @code_portfolio_item = current_user.code_portfolio_items.build(code_portfolio_item_params)
 
@@ -29,7 +28,6 @@ class CodePortfolioItemsController < ApplicationController
 
   # PATCH/PUT /code_portfolio_items/1
   def update
-    ROLES = %w[admin].freeze
     if @code_portfolio_item.update(code_portfolio_item_params)
       render json: @code_portfolio_item
     else
@@ -39,7 +37,6 @@ class CodePortfolioItemsController < ApplicationController
 
   # DELETE /code_portfolio_items/1
   def destroy
-    ROLES = %w[admin].freeze
     @code_portfolio_item.destroy
   end
 
