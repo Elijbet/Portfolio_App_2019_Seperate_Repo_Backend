@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  # before_action :authorize_access_request!
+  before_action :authorize_access_request!, :except => [:index]
   before_action :set_article, only: [:show, :update, :destroy]
 
   # GET /articles

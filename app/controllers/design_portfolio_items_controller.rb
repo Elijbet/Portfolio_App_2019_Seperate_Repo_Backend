@@ -1,12 +1,13 @@
 class DesignPortfolioItemsController < ApplicationController
-  before_action :authorize_access_request!
+  before_action :authorize_access_request!, :except => [:index]
   before_action :set_design_portfolio_item, only: [:show, :update, :destroy]
 
   # GET /design_portfolio_items
   def index
     @design_portfolio_items = DesignPortfolioItem.all
+    render json: @design_portfolio_items.as_json(include: :user), status: 200
 
-    render json: @design_portfolio_items
+    # render json: @design_portfolio_items
   end
 
   # GET /design_portfolio_items/1

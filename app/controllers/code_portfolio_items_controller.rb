@@ -1,5 +1,5 @@
 class CodePortfolioItemsController < ApplicationController
-  before_action :authorize_access_request!
+  before_action :authorize_access_request!, :except => [:index]
   before_action :set_code_portfolio_item, only: [:show, :update, :destroy]
 
   # GET /code_portfolio_items
