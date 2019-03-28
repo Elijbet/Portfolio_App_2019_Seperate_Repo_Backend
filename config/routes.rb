@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   post 'signin', controller: :signin, action: :create
   post 'signup', controller: :signup, action: :create
   delete 'signin', controller: :signin, action: :destroy
+
+  get 'me', controller: :users, action: :me
+
+  namespace :admin do
+    resources :users, only: [:index]
+  end
   
   get 'welcome/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
